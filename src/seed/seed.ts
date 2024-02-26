@@ -12,8 +12,8 @@ interface SeedProduct {
 }
 
 export type Category = "men" | "women" | "kid" | "unisex";
-type Size = "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL";
-type ValidTypes = "shirts" | "pants" | "hoodies" | "hats";
+export type Size = "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL";
+export type ValidTypes = "shirts" | "pants" | "hoodies" | "hats";
 
 interface SeedData {
   products: SeedProduct[];
