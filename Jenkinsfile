@@ -32,7 +32,7 @@ pipeline {
     
          stage('Up new instaces') {
             steps {
-                sh 'pm2 start $(which npm) --name "teslo-shop" -- start --port 4000 --prefix /var/www/teslo-shop/'
+                sh 'sudo pm2 start $(which npm) --name "teslo-shop" -- start --port 4000 --prefix /var/www/teslo-shop/'
             }
         }
        
