@@ -27,10 +27,11 @@ pipeline {
                 sh 'pm2 start npm --name "teslo-shop" -- start -- --port 4000'
             }
         }
-         stage('Up new instaces') {
+        stage('other') {
             steps {
                 sh 'pm2 status'
             }
         }
+        
     }
 }
