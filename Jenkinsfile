@@ -32,7 +32,7 @@ pipeline {
     
          stage('Up new instaces') {
             steps {
-                sh ' cd /var/www/teslo-shop && pm2 start npm --name "teslo-shop" -- start -- --port 4000'
+                sh 'pm2 start /var/www/teslo-shop/npm --name "teslo-shop" -- start -- --port 4000'
             }
         }
        
