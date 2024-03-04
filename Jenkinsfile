@@ -12,7 +12,7 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage('Stop last instances') {
+        /*stage('Stop last instances') {
             steps {
                 sh 'pm2 stop teslo-shop'
             }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 sh 'pm2 delete teslo-shop'
             }
-        }
+        }*/
          stage('Up new instaces') {
             steps {
                 sh 'pm2 start npm --name "teslo-shop" -- start -p 3001'
