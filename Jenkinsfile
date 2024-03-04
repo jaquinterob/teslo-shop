@@ -7,11 +7,7 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Build app') {
-            steps {
-                sh 'npm run build'
-            }
-        }
+       
         /*stage('Stop last instances') {
             steps {
                 sh 'pm2 stop teslo-shop'
@@ -22,9 +18,20 @@ pipeline {
                 sh 'pm2 delete teslo-shop'
             }
         }*/
+         stage('move app files') {
+            steps {
+                sh 'cp -r * /var/www/teslo-shop/'
+            }
+        }
+         stage('Build app') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+        
          stage('Up new instaces') {
             steps {
-                sh 'pm2 start npm --name "teslo-shop" -- start -- --port 4000'
+                sh ' cd /var/www/teslo-shop && pm2 start npm --name "teslo-shop" -- start -- --port 4000'
             }
         }
         stage('other') {
