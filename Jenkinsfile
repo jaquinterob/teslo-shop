@@ -27,7 +27,7 @@ pipeline {
 
         stage('Iniciar Aplicación con PM2') {
             steps {
-                sh "npm run start"
+                sh "npm run start -- --port 4000"
             }
         }
   /*  agent any
