@@ -3,6 +3,7 @@ pipeline {
     
     environment {
         PORT = '4000' // Puerto en el que se está ejecutando la aplicación
+        APP_NAME = 'TESLO-SHOP-APP' // Puerto en el que se está ejecutando la aplicación
     }
     
     stages {
@@ -14,7 +15,7 @@ pipeline {
         }
         stage('Instalar Dependencias') {
             steps {
-                sh 'docker run -dp 3000:3000 teslo-shop'
+                sh "docker run -dp $PORT:3000 --name $APP_NAME teslo-shop"
             }
         }
         
