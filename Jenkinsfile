@@ -22,7 +22,7 @@ pipeline {
         
         stage('Iniciar Aplicación con PM2') {
             steps {
-                sh "npm start --silent -- --port $PORT"
+                sh "npm start --silent -- --port $PORT &"
             }
         }
     }
