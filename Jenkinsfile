@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        PORT = ß'4000' // Puerto en el que se está ejecutando la aplicación
+        PORT = '4000' // Puerto en el que se está ejecutando la aplicación
     }
     
     stages {
