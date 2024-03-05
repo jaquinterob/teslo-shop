@@ -19,10 +19,10 @@ pipeline {
                 sh 'npm run build'
             }
         }
-     stage('Detener Aplicación') {
+stage('Detener Aplicación') {
     steps {
         script {
-            sh "fuser -k ${env.PORT}/tcp"
+            sh "netstat -tulnp | grep LISTEN | grep ${env.PORT} | awk '{print \$7}' | cut -d '/' -f 1 | xargs kill"
         }
     }
 }
