@@ -1,6 +1,51 @@
 
 pipeline {
-    agent any
+     agent any
+    
+    environment {
+        APP_NAME = 'teslo-shop'
+        APP_PATH = '/var/www/teslo-shop/'
+    }
+    
+    stages {
+      
+        
+        stage('Instalar Dependencias') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        
+        stage('Construir y Empaquetar') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+        
+        stage('Detener Aplicación con PM2') {
+            steps {
+                sh "pm2 stop $APP_NAME || true"
+            }
+        }
+        
+        stage('Copiar Archivos a la VPS') {
+            steps {
+                sh "cp -r * $APP_PATH"
+            }
+        }
+        
+        stage('Actualizar Dependencias en la VPS') {
+            steps {
+                sh "cd $APP_PATH && npm install"
+            }
+        }
+        
+        stage('Iniciar Aplicación con PM2') {
+            steps {
+                sh "pm2 start index.js --name $APP_NAME "
+            }
+        }
+  /*  agent any
     stages {
          stage('move app files') {
             steps {
@@ -13,17 +58,7 @@ pipeline {
                 sh 'npm install'
             }
         }
-        /*stage('Stop last instances') {
-            steps {
-                sh 'pm2 stop teslo-shop'
-            }
-        }
-        stage('Remove last instances') {
-            steps {
-                sh 'pm2 delete teslo-shop'
-            }
-        }*/
-        
+          
          stage('Build app') {
             steps {
                 sh 'npm run build'
@@ -42,5 +77,5 @@ pipeline {
             }
         }
         
-    }
+    }*/
 }
