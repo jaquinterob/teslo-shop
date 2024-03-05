@@ -42,7 +42,7 @@ pipeline {
         
         stage('Iniciar Aplicación con PM2') {
             steps {
-                sh "cd $APP_PATH && pm2 start npm --name $APP_NAME -- start --port 4000"
+                sh "cd $APP_PATH && npm run start"
             }
         }
   /*  agent any
