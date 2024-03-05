@@ -21,28 +21,13 @@ pipeline {
                 sh 'npm run build'
             }
         }
+      
         
-        stage('Detener Aplicación con PM2') {
-            steps {
-                sh "pm2 stop $APP_NAME || true"
-            }
-        }
-        
-        stage('Copiar Archivos a la VPS') {
-            steps {
-                sh "cp -r * $APP_PATH"
-            }
-        }
-        
-        stage('Actualizar Dependencias en la VPS') {
-            steps {
-                sh "cd $APP_PATH && npm install"
-            }
-        }
-        
+       
+
         stage('Iniciar Aplicación con PM2') {
             steps {
-                sh "cd $APP_PATH && npm run start"
+                sh "npm run start"
             }
         }
   /*  agent any
