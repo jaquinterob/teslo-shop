@@ -19,14 +19,13 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        
-        stage('Detener Aplicación') {
-            steps {
-                script {
-                    sh "lsof -ti:${env.PORT} | xargs kill"
-                }
-            }
+     stage('Detener Aplicación') {
+    steps {
+        script {
+            sh "fuser -k ${env.PORT}/tcp"
         }
+    }
+}
         
         stage('Iniciar Aplicación con PM2') {
             steps {
