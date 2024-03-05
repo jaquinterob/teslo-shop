@@ -1,14 +1,16 @@
-
 pipeline {
-     agent any
+    agent any
     
     environment {
-        APP_NAME = 'teslo-shop'
-        APP_PATH = '/var/www/teslo-shop/'
+        PORT = '4000' // Puerto en el que se está ejecutando la aplicación
     }
     
     stages {
-      
+        stage('Clonar Repositorio') {
+            steps {
+                git branch: 'main', url: 'url_de_tu_repositorio.git'
+            }
+        }
         
         stage('Instalar Dependencias') {
             steps {
@@ -21,47 +23,19 @@ pipeline {
                 sh 'npm run build'
             }
         }
-      
         
-       
-
+        stage('Detener Aplicación') {
+            steps {
+                script {
+                    sh "lsof -ti:${env.PORT} | xargs kill"
+                }
+            }
+        }
+        
         stage('Iniciar Aplicación con PM2') {
             steps {
-                sh "npm run start -- --port 4000"
+                sh "npm start --silent -- --port ${env.PORT} &"
             }
         }
-  /*  agent any
-    stages {
-         stage('move app files') {
-            steps {
-                sh 'cp -r * /var/www/teslo-shop/'
-            }
-        }
-            
-        stage('npm install') {
-            steps {
-                sh 'npm install'
-            }
-        }
-          
-         stage('Build app') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-    
-         stage('Up new instaces') {
-            steps {
-                sh 'sudo pm2 start $(which npm) --name "teslo-shop" -- start --port 4000 --prefix /var/www/teslo-shop/'
-            }
-        }
-       
-        stage('other') {
-            steps {
-                sh 'pm2 status'
-            }
-        }
-        
-    }*/
-}
+    }
 }
