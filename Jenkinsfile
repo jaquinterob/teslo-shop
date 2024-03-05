@@ -3,6 +3,7 @@ pipeline {
   
   environment {
     PORT = '4000' 
+    IMAGE_NAME = 'TESLO-SHOP-IMAGE' 
     APP_NAME = 'TESLO-SHOP-APP' 
   }
   
@@ -24,7 +25,7 @@ pipeline {
         script {
           try {
             sh "docker rm $APP_NAME"
-            sh "docker rmi teslo-shop"
+            sh "docker rmi $IMAGE_NAME"
           } catch (Exception e) {
             echo "No image or container found with the specified names"
           }
@@ -34,13 +35,13 @@ pipeline {
     
     stage('Docker build') {
       steps {
-        sh 'docker build -t teslo-shop .'
+        sh 'docker build -t $IMAGE_NAME .'
       }
     }
     
     stage('Install Dependencies') {
       steps {
-        sh "docker run -dp $PORT:3000 --name $APP_NAME teslo-shop"
+        sh "docker run -dp $PORT:3000 --name $APP_NAME $IMAGE_NAME
       }
     }
   }
