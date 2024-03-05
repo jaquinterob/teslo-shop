@@ -2,15 +2,11 @@ pipeline {
     agent any
     
     environment {
-        PORT = '4000' // Puerto en el que se está ejecutando la aplicación
+        PORT = ß'4000' // Puerto en el que se está ejecutando la aplicación
     }
     
     stages {
-        stage('Clonar Repositorio') {
-            steps {
-                git branch: 'main', url: 'url_de_tu_repositorio.git'
-            }
-        }
+      
         
         stage('Instalar Dependencias') {
             steps {
