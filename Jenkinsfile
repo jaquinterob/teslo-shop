@@ -35,13 +35,13 @@ pipeline {
     
     stage('Docker build') {
       steps {
-        sh 'docker build -t $IMAGE_NAME .'
+        sh "docker build -t $IMAGE_NAME ."
       }
     }
     
     stage('Install Dependencies') {
       steps {
-        sh "docker run -dp $PORT:3000 --name $APP_NAME $IMAGE_NAME
+        sh "docker run -dp $PORT:3000 --name $APP_NAME $IMAGE_NAME"
       }
     }
   }
