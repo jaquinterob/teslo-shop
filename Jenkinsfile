@@ -7,26 +7,26 @@ pipeline {
   }
   
   stages {
-    stage('Detener contenedor Docker') {
+    stage('Stop Docker container') {
       steps {
         script {
           try {
             sh "docker stop $APP_NAME"
           } catch (Exception e) {
-            echo "No se encontró ningún contenedor en ejecución con el nombre $APP_NAME"
+            echo "No running container found with the name $APP_NAME"
           }
         }
       }
     }
     
-    stage('Eliminar imagen y contenedor Docker') {
+    stage('Remove Docker image and container') {
       steps {
         script {
           try {
             sh "docker rm $APP_NAME"
             sh "docker rmi teslo-shop"
           } catch (Exception e) {
-            echo "No se encontró ninguna imagen o contenedor con los nombres especificados"
+            echo "No image or container found with the specified names"
           }
         }
       }
@@ -38,7 +38,7 @@ pipeline {
       }
     }
     
-    stage('Instalar Dependencias') {
+    stage('Install Dependencies') {
       steps {
         sh "docker run -dp $PORT:3000 --name $APP_NAME teslo-shop"
       }
