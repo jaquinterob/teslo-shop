@@ -3,8 +3,8 @@ pipeline {
   
   environment {
     PORT = '4000' 
-    IMAGE_NAME = 'teslo-shop-image' 
-    APP_NAME = 'TESLO-SHOP-APP' 
+    IMAGE_NAME = 'teslo_shop_image' 
+    APP_NAME = 'TESLO_SHOP_APP' 
   }
   
   stages {
