@@ -3,7 +3,7 @@ pipeline {
   
   environment {
     PORT = '4000' 
-    IMAGE_NAME = 'TESLO-SHOP-IMAGE' 
+    IMAGE_NAME = 'teslo-shop-image' 
     APP_NAME = 'TESLO-SHOP-APP' 
   }
   
