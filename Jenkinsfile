@@ -19,13 +19,6 @@ pipeline {
                 sh 'npm run build'
             }
         }
-stage('Detener Aplicación') {
-    steps {
-        script {
-            sh "netstat -tulnp | grep LISTEN | grep ${env.PORT} | awk '{print \$7}' | cut -d '/' -f 1 | xargs kill"
-        }
-    }
-}
         
         stage('Iniciar Aplicación con PM2') {
             steps {
