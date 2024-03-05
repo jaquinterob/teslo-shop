@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Instalar Dependencias') {
             steps {
-                sh 'docker run -dp 4000:3000 teslo-shop'
+                sh 'docker run -dp 3000:3000 teslo-shop'
             }
         }
         
